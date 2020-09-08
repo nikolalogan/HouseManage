@@ -13,7 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RentUserRepository extends BaseDao<RentUser,String>, JpaSpecificationExecutor<RentUser> {
-//}
-//public interface RentUserRepository extends JpaRepository<RentUser,String> {
 
 }
