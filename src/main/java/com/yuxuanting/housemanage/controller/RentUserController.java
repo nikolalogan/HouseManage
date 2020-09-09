@@ -1,10 +1,15 @@
 package com.yuxuanting.housemanage.controller;
 
+import com.yuxuanting.housemanage.entity.RentUser;
 import com.yuxuanting.housemanage.service.RentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author: yuxuanting
@@ -16,9 +21,25 @@ public class RentUserController {
     @Autowired
     RentUserService rentUserService;
 
-    @GetMapping("/test")
-    public void test(){
-        rentUserService.test();
+    @PostMapping("/addOrUpdateRentUser")
+    Boolean addOrUpdateRentUser(@RequestBody @Valid RentUser rentUser) {
+        return rentUserService.addOrUpdateRentUser(rentUser);
     }
+
+    @PostMapping("/selectRentUser")
+    RentUser selectRentUser(@RequestParam("rentUserId") String rentUserId) {
+    return rentUserService.selectRentUser(rentUserId);
+    }
+
+    @PostMapping("/deleteRentUser")
+    boolean deleteRentUser(@RequestParam("rentUserId") String rentUserId) {
+    return rentUserService.deleteRentUser(rentUserId);
+    }
+
+    @PostMapping("/getAllRentUser")
+    List<RentUser> getAllRentUser() {
+    return rentUserService.getAllRentUser();
+    }
+
 
 }

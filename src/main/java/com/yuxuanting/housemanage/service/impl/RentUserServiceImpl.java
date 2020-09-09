@@ -1,12 +1,14 @@
 package com.yuxuanting.housemanage.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.yuxuanting.housemanage.dao.RentUserRepository;
 import com.yuxuanting.housemanage.entity.RentUser;
 import com.yuxuanting.housemanage.service.RentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.List;
 
 /**
  * @author: yuxuanting
@@ -19,15 +21,31 @@ public class RentUserServiceImpl implements RentUserService {
     RentUserRepository rentUserRepository;
 
     @Override
-    public void test() {
-        RentUser rentUser = rentUserRepository.getOne("4028fb4d746c9cb601746c9e19a20001");
-        rentUser.setIdNo("500231199603251015");
-        rentUser.setTrueName("yxt");
-        rentUser.setAddress("cq");
-        rentUser.setBrityDay(new Date());
-        rentUser.setGender("男");
-        rentUser.setPhoneNo("18908354841");
-        rentUser.setWechatNo("nikolalogan");
-        rentUserRepository.saveOrUpdate(rentUser);
+    public boolean addOrUpdateRentUser(RentUser rentUser) {
+        RentUser rentUserEn = rentUserRepository.getOne(rentUser.getId());
+        if (ObjectUtil.isNull(rentUserEn)) {
+            rentUserEn = new RentUser();
+        }
+        BeanUtil.copyProperties(rentUser, rentUserEn);
+        rentUserRepository.saveOrUpdate(rentUserEn);
+        return true;
+    }
+
+    @Override
+    public RentUser selectRentUser(String rentUserId) {
+        rentUserRepository.getOne(rentUserId).getAddress();
+        return rentUserRepository.getOne(rentUserId);
+    }
+
+    @Override
+    public boolean deleteRentUser(String rentUserId) {
+        RentUser rentUser = rentUserRepository.getOne(rentUserId);
+        rentUserRepository.delete(rentUser);
+        return false;
+    }
+
+    @Override
+    public List<RentUser> getAllRentUser() {
+        return rentUserRepository.findAll() ;
     }
 }

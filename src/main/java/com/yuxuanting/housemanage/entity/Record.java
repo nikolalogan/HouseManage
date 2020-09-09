@@ -32,7 +32,7 @@ public class Record extends BaseEntity {
 
     @Column
     @NotNull(message = "编辑日期不能为空")
-    private Date editTime;
+    private Date editTime = new Date();
 
     /**
      * 用户

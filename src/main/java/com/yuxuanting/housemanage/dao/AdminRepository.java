@@ -3,6 +3,7 @@ package com.yuxuanting.housemanage.dao;
 import com.yuxuanting.housemanage.dao.core.BaseDao;
 import com.yuxuanting.housemanage.entity.Admin;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.query.Param;
 
 /**
  * @author: yuxuanting
@@ -11,4 +12,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  */
 public interface AdminRepository extends BaseDao<Admin,String>, JpaSpecificationExecutor<Admin> {
 
+    Admin findAdminsByLoginNameAndPassword(@Param("loginName")String loginName,@Param("password")String password);
 }

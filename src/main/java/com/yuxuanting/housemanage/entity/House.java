@@ -21,6 +21,11 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "house")
 public class House extends BaseEntity {
+
+    public static final int WAIT = 0;
+    public static final int RENT = 1;
+    public static final int DESTINE = 2;
+
     @Column
     @NotNull(message = "房间标题不能为空")
     private String houseTitle;
