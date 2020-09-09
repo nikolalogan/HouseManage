@@ -1,10 +1,10 @@
 package com.yuxuanting.housemanage.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.yuxuanting.housemanage.dao.HouseRepository;
 import com.yuxuanting.housemanage.entity.House;
 import com.yuxuanting.housemanage.service.HouseService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +22,12 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public boolean addOrUpdateHouse(House house) {
-        House houseEnt = houseRepository.getOne(house.getId());
-        if (ObjectUtil.isNull(houseEnt)) {
-            houseEnt = new House();
+        House houseEn =  new House();
+        if (StringUtils.isNotEmpty(house.getId())){
+            houseEn = houseRepository.getOne(house.getId());
         }
-        BeanUtil.copyProperties(house, houseEnt);
-        houseRepository.saveOrUpdate(houseEnt);
+        BeanUtil.copyProperties(house, houseEn);
+        houseRepository.saveOrUpdate(houseEn);
         return true;
     }
 

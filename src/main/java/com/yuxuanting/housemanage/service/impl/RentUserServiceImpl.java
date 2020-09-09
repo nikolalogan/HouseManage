@@ -1,10 +1,10 @@
 package com.yuxuanting.housemanage.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.yuxuanting.housemanage.dao.RentUserRepository;
 import com.yuxuanting.housemanage.entity.RentUser;
 import com.yuxuanting.housemanage.service.RentUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +22,9 @@ public class RentUserServiceImpl implements RentUserService {
 
     @Override
     public boolean addOrUpdateRentUser(RentUser rentUser) {
-        RentUser rentUserEn = rentUserRepository.getOne(rentUser.getId());
-        if (ObjectUtil.isNull(rentUserEn)) {
-            rentUserEn = new RentUser();
+        RentUser rentUserEn =  new RentUser();
+        if (StringUtils.isNotEmpty(rentUser.getId())){
+            rentUserEn = rentUserRepository.getOne(rentUser.getId());
         }
         BeanUtil.copyProperties(rentUser, rentUserEn);
         rentUserRepository.saveOrUpdate(rentUserEn);

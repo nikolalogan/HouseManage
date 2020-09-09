@@ -80,6 +80,12 @@
 			<artifactId>hutool-all</artifactId>
 			<version>5.4.1</version>
 		</dependency>
+		<dependency>
+			<scope>compile</scope>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.11</version>
+		</dependency>
 	</dependencies>
 
 	<build>

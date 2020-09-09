@@ -1,11 +1,10 @@
 package com.yuxuanting.housemanage.service.impl.revenue;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.yuxuanting.housemanage.dao.revenue.DailyRevenueRepository;
-import com.yuxuanting.housemanage.entity.Contract;
 import com.yuxuanting.housemanage.entity.revenue.DailyRevenue;
 import com.yuxuanting.housemanage.service.revenue.DailyRevenueService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +23,9 @@ public class DailyRevenueServiceImpl implements DailyRevenueService {
 
     @Override
     public boolean addOrUpdateDailyRevenue(DailyRevenue dailyRevenue) {
-        DailyRevenue dailyRevenueEn = dailyRevenueRepository.getOne(dailyRevenue.getId());
-        if (ObjectUtil.isNull(dailyRevenue)) {
-            dailyRevenueEn = new DailyRevenue();
+        DailyRevenue dailyRevenueEn =  new DailyRevenue();
+        if (StringUtils.isNotEmpty(dailyRevenue.getId())){
+            dailyRevenueEn = dailyRevenueRepository.getOne(dailyRevenue.getId());
         }
         BeanUtil.copyProperties(dailyRevenue, dailyRevenueEn);
         dailyRevenueRepository.saveOrUpdate(dailyRevenueEn);

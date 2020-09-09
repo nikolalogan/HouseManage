@@ -1,11 +1,10 @@
 package com.yuxuanting.housemanage.service.impl.revenue;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.yuxuanting.housemanage.dao.revenue.RevenueTypeRepository;
 import com.yuxuanting.housemanage.entity.revenue.RevenueType;
-import com.yuxuanting.housemanage.entity.revenue.RevenueType;
 import com.yuxuanting.housemanage.service.revenue.RevenueTypeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,34 +18,34 @@ import java.util.List;
 @Service
 public class RevenueTypeServiceImpl implements RevenueTypeService {
     @Autowired
-    com.yuxuanting.housemanage.dao.revenue.RevenueTypeRepository RevenueTypeRepository;
+    RevenueTypeRepository revenueTypeRepository;
 
 
     @Override
-    public boolean addOrUpdateRevenueType(RevenueType RevenueType) {
-        RevenueType RevenueTypeEn = RevenueTypeRepository.getOne(RevenueType.getId());
-        if (ObjectUtil.isNull(RevenueType)) {
-            RevenueTypeEn = new RevenueType();
+    public boolean addOrUpdateRevenueType(RevenueType revenueType) {
+        RevenueType revenueTypeEn =  new RevenueType();
+        if (StringUtils.isNotEmpty(revenueType.getId())){
+            revenueTypeEn = revenueTypeRepository.getOne(revenueType.getId());
         }
-        BeanUtil.copyProperties(RevenueType, RevenueTypeEn);
-        RevenueTypeRepository.saveOrUpdate(RevenueTypeEn);
+        BeanUtil.copyProperties(revenueType, revenueTypeEn);
+        revenueTypeRepository.saveOrUpdate(revenueTypeEn);
         return true;
     }
 
     @Override
-    public RevenueType selectRevenueType(String RevenueTypeId) {
-        return RevenueTypeRepository.getOne(RevenueTypeId);
+    public RevenueType selectRevenueType(String revenueTypeId) {
+        return revenueTypeRepository.getOne(revenueTypeId);
     }
 
     @Override
-    public boolean deleteRevenueType(String RevenueTypeId) {
-        RevenueType RevenueType = RevenueTypeRepository.getOne(RevenueTypeId);
-        RevenueTypeRepository.delete(RevenueType);
+    public boolean deleteRevenueType(String revenueTypeId) {
+        RevenueType RevenueType = revenueTypeRepository.getOne(revenueTypeId);
+        revenueTypeRepository.delete(RevenueType);
         return true;
     }
 
     @Override
     public List<RevenueType> findAllRevenueType() {
-        return RevenueTypeRepository.findAll();
+        return revenueTypeRepository.findAll();
     }
 }

@@ -1,10 +1,10 @@
 package com.yuxuanting.housemanage.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.yuxuanting.housemanage.dao.ContractRepository;
 import com.yuxuanting.housemanage.entity.Contract;
 import com.yuxuanting.housemanage.service.ContractService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +22,9 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public boolean addOrUpdateContract(Contract contract) {
-        Contract contractEn = contractRepository.getOne(contract.getId());
-        if (ObjectUtil.isNull(contractRepository)) {
-            contractEn = new Contract();
+        Contract contractEn =  new Contract();
+        if (StringUtils.isNotEmpty(contract.getId())){
+            contractEn = contractRepository.getOne(contract.getId());
         }
         BeanUtil.copyProperties(contract, contractEn);
         contractRepository.saveOrUpdate(contractEn);
