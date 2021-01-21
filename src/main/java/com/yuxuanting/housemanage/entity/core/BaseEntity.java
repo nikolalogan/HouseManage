@@ -35,7 +35,7 @@ public abstract class BaseEntity implements Serializable {
             name = "system-uuid",
             strategy = "uuid"
     )
-    private String id;
+    private long id;
 
     @Version
     private Long version;
