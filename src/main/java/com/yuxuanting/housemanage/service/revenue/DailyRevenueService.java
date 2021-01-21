@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface DailyRevenueService {
     boolean addOrUpdateDailyRevenue(DailyRevenue dailyRevenue);
-    DailyRevenue selectDailyRevenue(String dailyRevenueId);
-    boolean deleteRevenue(String dailyRevenueId);
+    DailyRevenue selectDailyRevenue(Long dailyRevenueId);
+    boolean deleteRevenue(Long dailyRevenueId);
     List<DailyRevenue> findAllDailyRevenue();
 }

@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.yuxuanting.housemanage.dao.ContractRepository;
 import com.yuxuanting.housemanage.entity.Contract;
 import com.yuxuanting.housemanage.service.ContractService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public boolean addOrUpdateContract(Contract contract) {
         Contract contractEn =  new Contract();
-        if (StringUtils.isNotEmpty(contract.getId())){
+        if (ObjectUtils.isNotEmpty(contract.getId())){
             contractEn = contractRepository.getOne(contract.getId());
         }
         BeanUtil.copyProperties(contract, contractEn);
@@ -32,12 +33,12 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public Contract selectContract(String contractId) {
+    public Contract selectContract(Long contractId) {
         return contractRepository.getOne(contractId);
     }
 
     @Override
-    public boolean deleteContract(String contractId) {
+    public boolean deleteContract(Long contractId) {
         Contract contract = contractRepository.getOne(contractId);
         contractRepository.delete(contract);
         return true;

@@ -1,9 +1,11 @@
 package com.yuxuanting.housemanage.service.impl.revenue;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.log.Log;
 import com.yuxuanting.housemanage.dao.revenue.RevenueTypeRepository;
 import com.yuxuanting.housemanage.entity.revenue.RevenueType;
 import com.yuxuanting.housemanage.service.revenue.RevenueTypeService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class RevenueTypeServiceImpl implements RevenueTypeService {
     @Override
     public boolean addOrUpdateRevenueType(RevenueType revenueType) {
         RevenueType revenueTypeEn =  new RevenueType();
-        if (StringUtils.isNotEmpty(revenueType.getId())){
+        if (ObjectUtils.isNotEmpty(revenueType.getId())){
             revenueTypeEn = revenueTypeRepository.getOne(revenueType.getId());
         }
         BeanUtil.copyProperties(revenueType, revenueTypeEn);
@@ -33,12 +35,12 @@ public class RevenueTypeServiceImpl implements RevenueTypeService {
     }
 
     @Override
-    public RevenueType selectRevenueType(String revenueTypeId) {
+    public RevenueType selectRevenueType(Long revenueTypeId) {
         return revenueTypeRepository.getOne(revenueTypeId);
     }
 
     @Override
-    public boolean deleteRevenueType(String revenueTypeId) {
+    public boolean deleteRevenueType(Long revenueTypeId) {
         RevenueType RevenueType = revenueTypeRepository.getOne(revenueTypeId);
         revenueTypeRepository.delete(RevenueType);
         return true;

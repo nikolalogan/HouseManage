@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface RentRevenueService {
     boolean addOrUpdateRentRevenue(RentRevenue RentRevenue);
-    RentRevenue selectRentRevenue(String RentRevenueId);
-    boolean deleteRevenue(String RentRevenueId);
+    RentRevenue selectRentRevenue(Long RentRevenueId);
+    boolean deleteRevenue(Long RentRevenueId);
     List<RentRevenue> findAllRentRevenue();
 }

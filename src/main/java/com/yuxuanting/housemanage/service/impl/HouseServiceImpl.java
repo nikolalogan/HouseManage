@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.yuxuanting.housemanage.dao.HouseRepository;
 import com.yuxuanting.housemanage.entity.House;
 import com.yuxuanting.housemanage.service.HouseService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class HouseServiceImpl implements HouseService {
     @Override
     public boolean addOrUpdateHouse(House house) {
         House houseEn =  new House();
-        if (StringUtils.isNotEmpty(house.getId())){
+        if (ObjectUtils.isNotEmpty(house.getId())){
             houseEn = houseRepository.getOne(house.getId());
         }
         BeanUtil.copyProperties(house, houseEn);
@@ -32,14 +33,14 @@ public class HouseServiceImpl implements HouseService {
     }
 
     @Override
-    public boolean deleteHouse(String houseId) {
+    public boolean deleteHouse(Long houseId) {
         House house = houseRepository.getOne(houseId);
         houseRepository.delete(house);
         return true;
     }
 
     @Override
-    public House selectHouse(String houseId) {
+    public House selectHouse(Long houseId) {
         return houseRepository.getOne(houseId);
     }
 

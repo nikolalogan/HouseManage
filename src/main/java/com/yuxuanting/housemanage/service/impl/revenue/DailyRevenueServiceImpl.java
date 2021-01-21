@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.yuxuanting.housemanage.dao.revenue.DailyRevenueRepository;
 import com.yuxuanting.housemanage.entity.revenue.DailyRevenue;
 import com.yuxuanting.housemanage.service.revenue.DailyRevenueService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class DailyRevenueServiceImpl implements DailyRevenueService {
     @Override
     public boolean addOrUpdateDailyRevenue(DailyRevenue dailyRevenue) {
         DailyRevenue dailyRevenueEn =  new DailyRevenue();
-        if (StringUtils.isNotEmpty(dailyRevenue.getId())){
+        if (ObjectUtils.isNotEmpty(dailyRevenue.getId())){
             dailyRevenueEn = dailyRevenueRepository.getOne(dailyRevenue.getId());
         }
         BeanUtil.copyProperties(dailyRevenue, dailyRevenueEn);
@@ -33,12 +34,12 @@ public class DailyRevenueServiceImpl implements DailyRevenueService {
     }
 
     @Override
-    public DailyRevenue selectDailyRevenue(String dailyRevenueId) {
+    public DailyRevenue selectDailyRevenue(Long dailyRevenueId) {
         return dailyRevenueRepository.getOne(dailyRevenueId);
     }
 
     @Override
-    public boolean deleteRevenue(String dailyRevenueId) {
+    public boolean deleteRevenue(Long dailyRevenueId) {
         DailyRevenue dailyRevenue = dailyRevenueRepository.getOne(dailyRevenueId);
         dailyRevenueRepository.delete(dailyRevenue);
         return true;

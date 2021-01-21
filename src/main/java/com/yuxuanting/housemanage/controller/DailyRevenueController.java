@@ -27,12 +27,12 @@ public class DailyRevenueController {
     }
 
     @PostMapping("/selectDailyRevenue")
-    DailyRevenue selectDailyRevenue(@RequestParam("dailyRevenueId") String dailyRevenueId) {
+    DailyRevenue selectDailyRevenue(@RequestParam("dailyRevenueId") Long dailyRevenueId) {
         return dailyRevenueService.selectDailyRevenue(dailyRevenueId);
     }
 
     @PostMapping("/deleteDailyRevenue")
-    boolean deleteDailyRevenue(@RequestParam("dailyRevenueId") String dailyRevenueId) {
+    boolean deleteDailyRevenue(@RequestParam("dailyRevenueId") Long dailyRevenueId) {
         return dailyRevenueService.deleteRevenue(dailyRevenueId);
     }
 

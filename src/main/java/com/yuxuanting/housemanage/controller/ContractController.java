@@ -25,12 +25,12 @@ public class ContractController {
     }
 
     @PostMapping("/selectContract")
-    Contract selectContract(@RequestParam("contractId") String contractId) {
+    Contract selectContract(@RequestParam("contractId") Long contractId) {
         return contractService.selectContract(contractId);
     }
 
     @PostMapping("/deleteContract")
-    boolean deleteContract(@RequestParam("contractId") String contractId) {
+    boolean deleteContract(@RequestParam("contractId") Long contractId) {
         return contractService.deleteContract(contractId);
     }
 

@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * @description:
  * @date: 2020-09-08 18:14
  */
-public interface DailyRevenueRepository extends BaseDao<DailyRevenue,String>, JpaSpecificationExecutor<DailyRevenue> {
+public interface DailyRevenueRepository extends BaseDao<DailyRevenue,Long>, JpaSpecificationExecutor<DailyRevenue> {
 }

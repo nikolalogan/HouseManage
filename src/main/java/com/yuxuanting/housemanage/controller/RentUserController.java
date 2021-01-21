@@ -27,12 +27,12 @@ public class RentUserController {
     }
 
     @PostMapping("/selectRentUser")
-    RentUser selectRentUser(@RequestParam("rentUserId") String rentUserId) {
+    RentUser selectRentUser(@RequestParam("rentUserId") Long rentUserId) {
     return rentUserService.selectRentUser(rentUserId);
     }
 
     @PostMapping("/deleteRentUser")
-    boolean deleteRentUser(@RequestParam("rentUserId") String rentUserId) {
+    boolean deleteRentUser(@RequestParam("rentUserId") Long rentUserId) {
     return rentUserService.deleteRentUser(rentUserId);
     }
 

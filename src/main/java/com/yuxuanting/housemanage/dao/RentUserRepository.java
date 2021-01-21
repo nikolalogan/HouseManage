@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
  * @date: 2020-09-01 23:16
  */
 @Repository
-public interface RentUserRepository extends BaseDao<RentUser,String>, JpaSpecificationExecutor<RentUser> {
+public interface RentUserRepository extends BaseDao<RentUser,Long>, JpaSpecificationExecutor<RentUser> {
 
 }

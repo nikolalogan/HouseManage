@@ -27,12 +27,12 @@ public class RevenueTypeController {
     }
 
     @PostMapping("/selectRevenueType")
-    RevenueType selectRevenueType(@RequestParam("revenueTypeId") String revenueTypeId) {
+    RevenueType selectRevenueType(@RequestParam("revenueTypeId") Long revenueTypeId) {
         return revenueTypeService.selectRevenueType(revenueTypeId);
     }
 
     @PostMapping("/deleteRevenueType")
-    boolean deleteRevenueType(@RequestParam("revenueTypeId") String revenueTypeId) {
+    boolean deleteRevenueType(@RequestParam("revenueTypeId") Long revenueTypeId) {
         return revenueTypeService.deleteRevenueType(revenueTypeId);
     }
 

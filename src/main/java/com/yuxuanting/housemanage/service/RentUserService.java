@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface RentUserService {
     boolean addOrUpdateRentUser(RentUser rentUser);
-    RentUser selectRentUser(String rentUserId);
-    boolean deleteRentUser(String rentUserId);
+    RentUser selectRentUser(Long rentUserId);
+    boolean deleteRentUser(Long rentUserId);
     List<RentUser> getAllRentUser();
 }

@@ -14,9 +14,9 @@ import java.util.List;
 public interface HouseService {
     boolean addOrUpdateHouse(House house);
 
-    boolean deleteHouse(String houseId);
+    boolean deleteHouse(Long houseId);
 
-    House selectHouse(String houseId);
+    House selectHouse(Long houseId);
 
     List<House> selectFreeHouse();
 }

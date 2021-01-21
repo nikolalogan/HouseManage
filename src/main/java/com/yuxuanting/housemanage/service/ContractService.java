@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface ContractService {
     boolean addOrUpdateContract(Contract contract);
-    Contract selectContract(String contractId);
-    boolean deleteContract(String contractId);
+    Contract selectContract(Long contractId);
+    boolean deleteContract(Long contractId);
     List<Contract> getContracts();
 }

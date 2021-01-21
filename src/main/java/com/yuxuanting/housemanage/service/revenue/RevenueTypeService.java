@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface RevenueTypeService {
     boolean addOrUpdateRevenueType(RevenueType RevenueType);
-    RevenueType selectRevenueType(String RevenueTypeId);
-    boolean deleteRevenueType(String RevenueTypeId);
+    RevenueType selectRevenueType(Long RevenueTypeId);
+    boolean deleteRevenueType(Long RevenueTypeId);
     List<RevenueType> findAllRevenueType();
 }

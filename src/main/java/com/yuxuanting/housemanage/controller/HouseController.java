@@ -29,12 +29,12 @@ public class HouseController {
     }
 
     @PostMapping("/selectHouse")
-    House selectHouse(@RequestParam("houseId") String houseId) {
+    House selectHouse(@RequestParam("houseId") Long houseId) {
         return houseService.selectHouse(houseId);
     }
 
     @PostMapping("/deleteHouse")
-    boolean deleteHouse(@RequestParam("houseId") String houseId) {
+    boolean deleteHouse(@RequestParam("houseId") Long houseId) {
         return houseService.deleteHouse(houseId);
     }
 

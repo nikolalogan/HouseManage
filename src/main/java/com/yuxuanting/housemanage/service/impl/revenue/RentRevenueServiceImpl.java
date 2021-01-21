@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import com.yuxuanting.housemanage.dao.revenue.RentRevenueRepository;
 import com.yuxuanting.housemanage.entity.revenue.RentRevenue;
 import com.yuxuanting.housemanage.service.revenue.RentRevenueService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class RentRevenueServiceImpl implements RentRevenueService {
     @Override
     public boolean addOrUpdateRentRevenue(RentRevenue rentRevenue) {
         RentRevenue rentRevenueEn =  new RentRevenue();
-        if (StringUtils.isNotEmpty(rentRevenue.getId())){
+        if (ObjectUtils.isNotEmpty(rentRevenue.getId())){
             rentRevenueEn = rentRevenueRepository.getOne(rentRevenue.getId());
         }
         BeanUtil.copyProperties(rentRevenue, rentRevenueEn);
@@ -33,12 +34,12 @@ public class RentRevenueServiceImpl implements RentRevenueService {
     }
 
     @Override
-    public RentRevenue selectRentRevenue(String rentRevenueId) {
+    public RentRevenue selectRentRevenue(Long rentRevenueId) {
         return rentRevenueRepository.getOne(rentRevenueId);
     }
 
     @Override
-    public boolean deleteRevenue(String rentRevenueId) {
+    public boolean deleteRevenue(Long rentRevenueId) {
         RentRevenue RentRevenue = rentRevenueRepository.getOne(rentRevenueId);
         rentRevenueRepository.delete(RentRevenue);
         return true;
