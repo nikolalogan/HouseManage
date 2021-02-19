@@ -1,12 +1,11 @@
 package com.yuxuanting.housemanage.entity.revenue;
 
+import com.nikolalogan.core.reponsitory.entity.BaseEntity;
 import com.yuxuanting.housemanage.entity.Admin;
-import com.yuxuanting.housemanage.entity.core.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;

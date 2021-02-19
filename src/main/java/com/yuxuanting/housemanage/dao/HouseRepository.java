@@ -1,9 +1,8 @@
 package com.yuxuanting.housemanage.dao;
 
-import com.yuxuanting.housemanage.dao.core.BaseDao;
+import com.nikolalogan.core.reponsitory.dao.BaseDao;
 import com.yuxuanting.housemanage.entity.House;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

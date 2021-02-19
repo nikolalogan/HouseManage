@@ -1,6 +1,6 @@
 package com.yuxuanting.housemanage.entity;
 
-import com.yuxuanting.housemanage.entity.core.BaseEntity;
+import com.nikolalogan.core.reponsitory.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
