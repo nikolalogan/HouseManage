@@ -1,14 +1,17 @@
 package com.yuxuanting.housemanage.controller;
 
 import com.nikolalogan.core.controller.response.Resp;
-import com.yuxuanting.housemanage.dao.AdminRepository;
-import com.yuxuanting.housemanage.entity.Admin;
+import com.nikolalogan.core.utils.R;
+import com.yuxuanting.housemanage.dto.auth.LoginDto;
 import com.yuxuanting.housemanage.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
  * @author: yuxuanting
@@ -20,13 +23,19 @@ public class AdminController {
     @Autowired
     AdminService adminService;
 
-    @GetMapping("/login")
-    Resp Login(@RequestParam("name") String name, @RequestParam("passwd") String passwd) {
-        Boolean result = adminService.login(name,passwd);
+    /**
+     * 使用账号密码登录
+     * @param loginDto loginDto
+     * @return 登录结果
+     */
+    @PostMapping("/login")
+    Resp Login(@Valid @RequestBody LoginDto loginDto, HttpServletRequest request) {
+        String ip = request.getRemoteAddr();
+        Boolean result = adminService.login(loginDto.getLoginName(), loginDto.getPassword(),ip);
         if (result){
-            return Resp.success();
+            return R.success();
         }else {
-            return Resp.failed("登陆失败");
+            return R.failed("登陆失败");
         }
     }
 }

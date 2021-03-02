@@ -1,70 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.nikolalogan.core</groupId>
-		<artifactId>core</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath></relativePath> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.yuxuanting</groupId>
-	<artifactId>housemanage</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>housemanage</name>
-	<description>Demo project for Spring Boot</description>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.nikolalogan.core</groupId>
+        <artifactId>core</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath></relativePath> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.yuxuanting</groupId>
+    <artifactId>housemanage</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>housemanage</name>
+    <description>Demo project for Spring Boot</description>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.nikolalogan.core</groupId>
-			<artifactId>core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.nikolalogan.core</groupId>
+            <artifactId>core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+    </dependencies>
+    <properties>
+        <java.version>11</java.version>
+        <dockerfile-maven-plugin.version>1.3.6</dockerfile-maven-plugin.version>
+        <docker.image.prefix>houserent</docker.image.prefix>
+        <project.artifactId>1.0.0</project.artifactId>
+        <project.build.directory>D:/docker</project.build.directory>
+        <project.build.finalName>houserent</project.build.finalName>
+        <shiro.version>1.4.0</shiro.version>
+    </properties>
 
-	</dependencies>
-
-
-	<properties>
-		<java.version>11</java.version>
-		<dockerfile-maven-plugin.version>1.3.6</dockerfile-maven-plugin.version>
-		<docker.image.prefix>houserent</docker.image.prefix>
-		<project.artifactId>1.0.0</project.artifactId>
-		<project.build.directory>D:/docker</project.build.directory>
-		<project.build.finalName>houserent</project.build.finalName>
-	</properties>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.spotify</groupId>
-				<artifactId>dockerfile-maven-plugin</artifactId>
-				<version>${dockerfile-maven-plugin.version}</version>
-				<!--<configuration>
-					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<dockerDirectory>src/main/docker</dockerDirectory>
-					<resources>
-						<resource>
-							<targetPath>/</targetPath>
-							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.jar</include>
-						</resource>
-					</resources>
-				</configuration>-->
-			</plugin>
-		</plugins>
-	</build>
-<!--	<repositories>&lt;!&ndash; 代码库 &ndash;&gt;-->
-<!--		<repository>-->
-<!--			<id>maven-ali</id>-->
-<!--			<url>http://maven.aliyun.com/nexus/content/groups/public//</url>-->
-<!--			<releases>-->
-<!--				<enabled>true</enabled>-->
-<!--			</releases>-->
-<!--			<snapshots>-->
-<!--				<enabled>true</enabled>-->
-<!--				<updatePolicy>always</updatePolicy>-->
-<!--				<checksumPolicy>fail</checksumPolicy>-->
-<!--			</snapshots>-->
-<!--		</repository>-->
-<!--	</repositories>-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerfile-maven-plugin.version}</version>
+                <!--<configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>-->
+            </plugin>
+        </plugins>
+    </build>
+    <!--	<repositories>&lt;!&ndash; 代码库 &ndash;&gt;-->
+    <!--		<repository>-->
+    <!--			<id>maven-ali</id>-->
+    <!--			<url>http://maven.aliyun.com/nexus/content/groups/public//</url>-->
+    <!--			<releases>-->
+    <!--				<enabled>true</enabled>-->
+    <!--			</releases>-->
+    <!--			<snapshots>-->
+    <!--				<enabled>true</enabled>-->
+    <!--				<updatePolicy>always</updatePolicy>-->
+    <!--				<checksumPolicy>fail</checksumPolicy>-->
+    <!--			</snapshots>-->
+    <!--		</repository>-->
+    <!--	</repositories>-->
 </project>

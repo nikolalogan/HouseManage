@@ -5,6 +5,8 @@ import com.yuxuanting.housemanage.entity.Admin;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 /**
  * @author: yuxuanting
  * @description:
@@ -12,5 +14,18 @@ import org.springframework.data.repository.query.Param;
  */
 public interface AdminRepository extends BaseDao<Admin,String>, JpaSpecificationExecutor<Admin> {
 
-    Admin findAdminsByLoginNameAndPassword(@Param("loginName")String loginName,@Param("password")String password);
+    /**
+     * 通过用户名查找管理员
+     * @param loginName 用户名
+     * @return 管理员
+     */
+    Admin findAdminByLoginName(@Param("loginName")String loginName);
+
+    /**
+     * 通过登录名查找在线用户
+     * @param names
+     * @return
+     */
+    List<Admin> findAdminsByLoginName(Object[] names);
+
 }
