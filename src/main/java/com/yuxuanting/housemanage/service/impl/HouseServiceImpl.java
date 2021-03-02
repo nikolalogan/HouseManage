@@ -46,6 +46,7 @@ public class HouseServiceImpl implements HouseService {
 
     @Override
     public List<House> selectFreeHouse() {
-        return houseRepository.findAllByStatus(House.WAIT);
+//        return houseRepository.findAllByStatus(House.WAIT);
+        return null;
     }
 }

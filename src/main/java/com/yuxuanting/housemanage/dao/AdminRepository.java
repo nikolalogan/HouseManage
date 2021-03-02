@@ -21,11 +21,11 @@ public interface AdminRepository extends BaseDao<Admin,String>, JpaSpecification
      */
     Admin findAdminByLoginName(@Param("loginName")String loginName);
 
-    /**
-     * 通过登录名查找在线用户
-     * @param names
-     * @return
-     */
-    List<Admin> findAdminsByLoginName(Object[] names);
+//    /**
+//     * 通过登录名查找在线用户
+//     * @param names
+//     * @return
+//     */
+//    List<Admin> findAdminsByLoginName(Object[] names);
 
 }

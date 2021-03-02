@@ -1,13 +1,17 @@
 package com.yuxuanting.housemanage.entity;
 
 import com.nikolalogan.core.reponsitory.entity.BaseEntity;
+import com.yuxuanting.housemanage.entity.auth.Role;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: yuxuanting
@@ -53,10 +57,10 @@ public class Admin extends BaseEntity {
      * 是否锁定
      */
     @Column
-    private Boolean lock = false;
+    private Boolean isLock = false;
 
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    private List<Role> roles;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Role> roles;
 
 }

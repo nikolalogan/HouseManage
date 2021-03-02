@@ -80,7 +80,7 @@ public class MyRealm extends AuthorizingRealm {
  
         if (ObjectUtil.isEmpty(admin)) {
             throw new APIException("该帐号不存在！");
-        } else if (admin.getLock()) {
+        } else if (admin.getIsLock()) {
             throw new UnknownAccountException("该帐号已被锁定！");
         } else if (exception != null && exception instanceof SignatureVerificationException) {
             throw new AuthenticationException("Token错误(Token incorrect.)！");

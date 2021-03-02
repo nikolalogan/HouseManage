@@ -18,11 +18,10 @@ import java.util.List;
 @Entity
 @Table(name = "role")
 public class Role extends BaseEntity {
-	private Integer rid;
 	private String roleName;
-	private String desc;
+	private String description;
 
-//	@OneToMany(fetch = FetchType.LAZY)
-//	private List<Permission> permissions;
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Permission> permissions;
 
 }

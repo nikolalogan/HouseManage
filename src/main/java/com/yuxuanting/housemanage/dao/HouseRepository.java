@@ -12,5 +12,4 @@ import java.util.List;
  * @date: 2020-09-08 18:13
  */
 public interface HouseRepository extends BaseDao<House,Long>, JpaSpecificationExecutor<House> {
-    List<House> findAllByStatus(int status);
  }

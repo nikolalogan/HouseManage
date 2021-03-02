@@ -147,6 +147,7 @@ public class AdminServiceImpl extends IBaseServiceImpl<AdminRepository, LoginDto
             String temp = iter.next();
             list.add(temp.substring(temp.lastIndexOf("_") + 1));
         }
-        return adminRepository.findAdminsByLoginName(list.toArray());
+//        return adminRepository.findAdminsByLoginName(list.toArray());
+        return null;
     }
 }

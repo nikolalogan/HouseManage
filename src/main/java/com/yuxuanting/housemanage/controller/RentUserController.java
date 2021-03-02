@@ -18,28 +18,28 @@ import java.util.List;
  */
 @RestController
 public class RentUserController {
-    @Autowired
-    RentUserService rentUserService;
-
-    @PostMapping("/addOrUpdateRentUser")
-    Boolean addOrUpdateRentUser(@RequestBody @Valid RentUser rentUser) {
-        return rentUserService.addOrUpdateRentUser(rentUser);
-    }
-
-    @PostMapping("/selectRentUser")
-    RentUser selectRentUser(@RequestParam("rentUserId") Long rentUserId) {
-    return rentUserService.selectRentUser(rentUserId);
-    }
-
-    @PostMapping("/deleteRentUser")
-    boolean deleteRentUser(@RequestParam("rentUserId") Long rentUserId) {
-    return rentUserService.deleteRentUser(rentUserId);
-    }
-
-    @PostMapping("/getAllRentUser")
-    List<RentUser> getAllRentUser() {
-    return rentUserService.getAllRentUser();
-    }
-
+//    @Autowired
+//    RentUserService rentUserService;
+//
+//    @PostMapping("/addOrUpdateRentUser")
+//    Boolean addOrUpdateRentUser(@RequestBody @Valid RentUser rentUser) {
+//        return rentUserService.addOrUpdateRentUser(rentUser);
+//    }
+//
+//    @PostMapping("/selectRentUser")
+//    RentUser selectRentUser(@RequestParam("rentUserId") Long rentUserId) {
+//    return rentUserService.selectRentUser(rentUserId);
+//    }
+//
+//    @PostMapping("/deleteRentUser")
+//    boolean deleteRentUser(@RequestParam("rentUserId") Long rentUserId) {
+//    return rentUserService.deleteRentUser(rentUserId);
+//    }
+//
+//    @PostMapping("/getAllRentUser")
+//    List<RentUser> getAllRentUser() {
+//    return rentUserService.getAllRentUser();
+//    }
+//
 
 }

@@ -14,9 +14,7 @@ import javax.persistence.Table;
 @Table(name = "permission")
 public class Permission extends BaseEntity {
     @Column
-    private Integer pid;
-    @Column
     private String permissionName;
     @Column
-    private String desc;
+    private String description;
 }
