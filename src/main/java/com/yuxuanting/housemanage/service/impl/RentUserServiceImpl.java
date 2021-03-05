@@ -1,11 +1,12 @@
 package com.yuxuanting.housemanage.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.nikolalogan.core.service.impl.IBaseServiceImpl;
 import com.yuxuanting.housemanage.dao.RentUserRepository;
+import com.yuxuanting.housemanage.dto.addRentUserDto;
 import com.yuxuanting.housemanage.entity.RentUser;
 import com.yuxuanting.housemanage.service.RentUserService;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +18,18 @@ import java.util.List;
  * @date: 2020-09-02 14:34
  */
 @Service
-public class RentUserServiceImpl implements RentUserService {
+public class RentUserServiceImpl extends IBaseServiceImpl<RentUserRepository, addRentUserDto,RentUser> implements RentUserService {
     @Autowired
     RentUserRepository rentUserRepository;
 
     @Override
-    public boolean addOrUpdateRentUser(RentUser rentUser) {
-        RentUser rentUserEn =  new RentUser();
+    public boolean addOrUpdateRentUser(addRentUserDto rentUserDto) {
+        RentUser rentUser =  new RentUser();
+        this.dtoToEntity(rentUserDto,rentUser);
         if (ObjectUtils.isNotEmpty(rentUser.getId())){
-            rentUserEn = rentUserRepository.getOne(rentUser.getId());
+            rentUser = rentUserRepository.getOne(rentUser.getId());
         }
-        BeanUtil.copyProperties(rentUser, rentUserEn);
-        rentUserRepository.saveOrUpdate(rentUserEn);
+        rentUserRepository.saveOrUpdate(rentUser);
         return true;
     }
 
@@ -48,5 +49,10 @@ public class RentUserServiceImpl implements RentUserService {
     @Override
     public List<RentUser> getAllRentUser() {
         return rentUserRepository.findAll() ;
+    }
+
+    @Override
+    protected void dtoToEntity(addRentUserDto dto, RentUser entity) {
+        BeanUtil.copyProperties(dto,entity);
     }
 }
