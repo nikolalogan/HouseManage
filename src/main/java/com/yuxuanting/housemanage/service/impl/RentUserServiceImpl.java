@@ -1,7 +1,7 @@
 package com.yuxuanting.housemanage.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.nikolalogan.core.service.impl.IBaseServiceImpl;
+import com.nikolalogan.common.core.service.impl.IBaseServiceImpl;
 import com.yuxuanting.housemanage.dao.RentUserRepository;
 import com.yuxuanting.housemanage.dto.addRentUserDto;
 import com.yuxuanting.housemanage.entity.RentUser;

@@ -1,6 +1,6 @@
 package com.yuxuanting.housemanage.util.shiro;
 
-import com.nikolalogan.core.controller.exception.APIException;
+import com.nikolalogan.common.core.controller.exception.APIException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;

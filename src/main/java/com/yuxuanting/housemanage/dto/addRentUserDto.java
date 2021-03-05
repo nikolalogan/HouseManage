@@ -1,6 +1,6 @@
 package com.yuxuanting.housemanage.dto;
 
-import com.nikolalogan.core.dto.BaseDto;
+import com.nikolalogan.common.core.dto.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
 

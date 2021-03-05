@@ -3,21 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.nikolalogan.core</groupId>
         <artifactId>core</artifactId>
+        <groupId>com.nikolalogan.core</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath></relativePath> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yuxuanting</groupId>
     <artifactId>housemanage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>housemanage</name>
-    <description>Demo project for Spring Boot</description>
+    <description>housemanage</description>
 
     <dependencies>
         <dependency>
             <groupId>com.nikolalogan.core</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -1,6 +1,6 @@
 package com.yuxuanting.housemanage.dao;
 
-import com.nikolalogan.core.reponsitory.dao.BaseDao;
+import com.nikolalogan.common.core.reponsitory.dao.BaseDao;
 import com.yuxuanting.housemanage.entity.Remind;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

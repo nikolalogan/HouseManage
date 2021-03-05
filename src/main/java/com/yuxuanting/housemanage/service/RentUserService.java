@@ -1,6 +1,6 @@
 package com.yuxuanting.housemanage.service;
 
-import com.nikolalogan.core.service.IBaseService;
+import com.nikolalogan.common.core.service.IBaseService;
 import com.yuxuanting.housemanage.dto.addRentUserDto;
 import com.yuxuanting.housemanage.entity.RentUser;
 

@@ -1,7 +1,7 @@
 package com.yuxuanting.housemanage.controller;
 
-import com.nikolalogan.core.controller.response.Resp;
-import com.nikolalogan.core.utils.R;
+import com.nikolalogan.common.core.controller.response.Resp;
+import com.nikolalogan.common.core.utils.R;
 import com.yuxuanting.housemanage.dto.auth.LoginDto;
 import com.yuxuanting.housemanage.service.AdminService;
 import com.yuxuanting.housemanage.util.shiro.JwtUtil;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class AdminController {
      * @return 登录结果
      */
     @PostMapping("/login")
-    public Resp login(@RequestBody LoginDto loginDto) {
+    public Resp login(@Valid @RequestBody LoginDto loginDto) {
         String username = loginDto.getLoginName();
         String password = loginDto.getPassword();
         log.info("username:{},password:{}", username, password);

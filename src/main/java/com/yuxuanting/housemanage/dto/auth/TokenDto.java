@@ -1,6 +1,6 @@
 package com.yuxuanting.housemanage.dto.auth;
 
-import com.nikolalogan.core.dto.BaseDto;
+import com.nikolalogan.common.core.dto.BaseDto;
 
 import java.util.Date;
 

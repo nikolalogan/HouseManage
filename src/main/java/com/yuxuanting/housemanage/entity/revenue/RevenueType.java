@@ -1,6 +1,6 @@
 package com.yuxuanting.housemanage.entity.revenue;
 
-import com.nikolalogan.core.reponsitory.entity.BaseEntity;
+import com.nikolalogan.common.core.reponsitory.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
