@@ -1,7 +1,6 @@
 package com.yuxuanting.housemanage.entity;
 
 import com.nikolalogan.common.core.reponsitory.entity.BaseEntity;
-import com.yuxuanting.housemanage.entity.auth.Role;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -48,19 +47,9 @@ public class Admin extends BaseEntity {
     private int loginNum = 0;
 
     /**
-     * 尝试次数
-     */
-    @Column
-    private int tryTime = 0;
-
-    /**
      * 是否锁定
      */
     @Column
     private Boolean isLock = false;
-
-
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Role> roles;
 
 }

@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @description:
  * @date: 2021-03-05 17:26
  */
-@RestControllerAdvice
+@RestControllerAdvice()
 public class ExceptionController extends ExceptionControllerAdvice {
 }

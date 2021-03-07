@@ -1,5 +1,6 @@
 package com.yuxuanting.housemanage.util.filter;
 
+import com.nikolalogan.common.core.controller.exception.APIException;
 import com.yuxuanting.housemanage.util.shiro.JwtToken;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -62,8 +63,9 @@ public class JwtFilter extends AccessControlFilter {
 
     //登录失败时默认返回 401 状态码
     private void onLoginFail(ServletResponse response) throws IOException {
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
-        httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        httpResponse.getWriter().write("login error");
+//        HttpServletResponse httpResponse = (HttpServletResponse) response;
+//        httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+//        httpResponse.getWriter().write("login error");
+        throw new APIException("登陆失败");
     }
 }

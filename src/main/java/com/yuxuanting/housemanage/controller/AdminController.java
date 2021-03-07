@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,15 +41,11 @@ public class AdminController {
     public Resp login(@Valid @RequestBody LoginDto loginDto) {
         String username = loginDto.getLoginName();
         String password = loginDto.getPassword();
-        log.info("username:{},password:{}", username, password);
-        if (!"tom".equals(username) || !"123".equals(password)) {
-            return R.failed("用户名密码错误");
-        }
-        JwtUtil jwtUtil = new JwtUtil();
-        Map<String, Object> chaim = new HashMap<>();
-        chaim.put("username", username);
-        String jwtToken = jwtUtil.encode(username, 5 * 60 * 1000, chaim);
-        return R.success("登陆成功");
+
+        HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String ip = req.getRemoteAddr();
+        log.info("username:{},password:{},ip:{}", username, password,ip);
+        return adminService.login(username,password,ip);
     }
 
     @RequestMapping("/testdemo")

@@ -4,12 +4,15 @@ import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.nikolalogan.common.core.controller.exception.APIException;
+import com.nikolalogan.common.core.controller.response.Resp;
 import com.nikolalogan.common.core.service.impl.IBaseServiceImpl;
+import com.nikolalogan.common.core.utils.R;
 import com.yuxuanting.housemanage.dao.AdminRepository;
 import com.yuxuanting.housemanage.dto.auth.LoginDto;
 import com.yuxuanting.housemanage.entity.Admin;
 import com.yuxuanting.housemanage.service.AdminService;
 import com.yuxuanting.housemanage.util.shiro.CommonConstant;
+import com.yuxuanting.housemanage.util.shiro.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,17 +54,15 @@ public class AdminServiceImpl extends IBaseServiceImpl<AdminRepository, LoginDto
     RedisTemplate redisTemplate;
 
     @Override
-    public Boolean login(String name, String passwd,String ip) {
+    public Resp login(String name, String passwd, String ip) {
 
         //Todo 加密方式
         String password = SecureUtil.md5(passwd);
         Admin admin = this.entityDao.findAdminByLoginName(name);
         if (ObjectUtil.isEmpty(admin)){
-
-            throw new APIException("该账户不存在，请检查用户名");
-        }
-        if (admin.getLoginNum()>5){
-            throw new APIException("账户已被锁定，请联系管理员");
+            return R.failed("该账户不存在，请检查用户名");
+        } if (admin.getIsLock()){
+            return R.failed("账户已被锁定，请联系管理员");
         }
         if (StringUtils.equals(admin.getPassword(),password)){
             admin.setLastLoginTime(new Date());
@@ -69,40 +70,28 @@ public class AdminServiceImpl extends IBaseServiceImpl<AdminRepository, LoginDto
             admin.setLoginNum(0);
             this.entityDao.saveOrUpdate(admin);
             log.info("{}登录成功",name);
-            return true;
+            Map<String, Object> chaim = new HashMap<>();
+            chaim.put("username", name);
+            JwtUtil jwtUtil = new JwtUtil();
+            String jwtToken = jwtUtil.encode(name, 5 * 60 * 1000, chaim);
+            // TODO 待集成redis
+            return R.success(Map.of("jwtToken",jwtToken));
         }else {
             int loginNum = admin.getLoginNum();
-            admin.setLoginNum(loginNum++);
-            log.info("{}登录失败",name);
-            return false;
+            admin.setLoginNum(loginNum+1);
+            if (loginNum>=5){
+                admin.setIsLock(true);
+            }
+            log.info("{}尝试登录,ip:{}",name,ip);
+            adminRepository.saveOrUpdate(admin);
+            int tryNum = 5 - loginNum;
+            return R.failed("密码错误还剩"+ tryNum + "尝试次数");
         }
     }
 
     @Override
     public Admin getAdminByAdminName(String name) {
         return adminRepository.findAdminByLoginName(name);
-    }
-
-
-    @Override
-    public Map<String, Object> getRolesAndPermissionsByUserName(String userName) {
-        /*Role role = null;
-        Permission permission = null;*/
-        Set<String> roles = new HashSet<String>();
-        Set<String > permissions = new HashSet<String>();
-        Map<String, Object> map = new HashMap<String, Object>();
-        Admin vo = this.adminRepository.findAdminByLoginName(userName);
-        /*for (int i = 0; i < vo.getRoles().size(); i++) {
-            role = vo.getRoles().get(i);
-            roles.add(role.getRoleName());
-            for (int j = 0; j < role.getPermissions().size(); j++) {
-                permission = role.getPermissions().get(i);
-                permissions.add(permission.getPermissionName());
-            }
-        }*/
-        map.put("allRoles", roles);
-        map.put("allPermissions", permissions);
-        return map;
     }
 
     @Override

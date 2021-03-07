@@ -6,7 +6,6 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -41,7 +40,8 @@ public class JwtRealm extends AuthorizingRealm {
         //判断
         JwtUtil jwtUtil = new JwtUtil();
         if (!jwtUtil.isVerify(jwt)) {
-            throw new UnknownAccountException();
+//            throw new UnknownAccountException();
+            throw new APIException("token不合法");
         }
         //下面是验证这个user是否是真实存在的
         String username = (String) jwtUtil.decode(jwt).get("username");//判断数据库中username是否存在

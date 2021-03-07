@@ -1,5 +1,6 @@
 package com.yuxuanting.housemanage.service;
 
+import com.nikolalogan.common.core.controller.response.Resp;
 import com.nikolalogan.common.core.service.IBaseService;
 import com.yuxuanting.housemanage.entity.Admin;
 
@@ -19,7 +20,7 @@ public interface AdminService {
      * @param ip 登陆ip
      * @return 登录结果
      */
-    Boolean login(String name,String passwd,String ip);
+    Resp login(String name, String passwd, String ip);
 
 
     /**
@@ -28,8 +29,6 @@ public interface AdminService {
      * @return Admin
      */
     Admin getAdminByAdminName(String name);
-
-    Map<String, Object> getRolesAndPermissionsByUserName(String userName);
 
     Map<String, Object> createRandomToken(String textStr);
 
