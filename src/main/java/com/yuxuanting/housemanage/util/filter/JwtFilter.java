@@ -1,6 +1,11 @@
 package com.yuxuanting.housemanage.util.filter;
 
+import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nikolalogan.common.core.controller.exception.APIException;
+import com.nikolalogan.common.core.controller.response.Resp;
+import com.nikolalogan.common.core.controller.response.ResultCode;
 import com.yuxuanting.housemanage.util.shiro.JwtToken;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.web.filter.AccessControlFilter;
@@ -18,6 +23,7 @@ import java.io.IOException;
  * */
 @Slf4j
 public class JwtFilter extends AccessControlFilter {
+
     /*
      * 1. 返回true，shiro就直接允许访问url
      * 2. 返回false，shiro才会根据onAccessDenied的方法的返回值决定是否允许访问url
@@ -51,7 +57,8 @@ public class JwtFilter extends AccessControlFilter {
             getSubject(servletRequest, servletResponse).login(jwtToken);
             //也就是subject.login(token)
         } catch (Exception e) {
-            e.printStackTrace();
+            log.info(e.getMessage());
+//            e.printStackTrace();
             onLoginFail(servletResponse);
             //调用下面的方法向客户端返回错误信息
             return false;
@@ -63,9 +70,25 @@ public class JwtFilter extends AccessControlFilter {
 
     //登录失败时默认返回 401 状态码
     private void onLoginFail(ServletResponse response) throws IOException {
-//        HttpServletResponse httpResponse = (HttpServletResponse) response;
-//        httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 //        httpResponse.getWriter().write("login error");
-        throw new APIException("登陆失败");
+
+        try {
+            // 将数据包装在R里后，再转换为json字符串响应给前端
+            String result = JSONUtil.toJsonStr(new Resp(ResultCode.NO_AUTHORITY,"login error"));
+            httpResponse.getWriter().write(result);
+        } catch (JsonProcessingException e) {
+            throw new APIException("返回String类型错误");
+        }
+
+        /*ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // 将数据包装在R里后，再转换为json字符串响应给前端
+            return objectMapper.writeValueAsString(new Resp<>(data));
+        } catch (JsonProcessingException e) {
+            throw new APIException("返回String类型错误");
+        }
+        throw new APIException("登陆失败");*/
     }
 }

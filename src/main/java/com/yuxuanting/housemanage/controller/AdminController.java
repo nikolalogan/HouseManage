@@ -1,5 +1,6 @@
 package com.yuxuanting.housemanage.controller;
 
+import com.nikolalogan.common.core.controller.exception.APIException;
 import com.nikolalogan.common.core.controller.response.Resp;
 import com.nikolalogan.common.core.utils.R;
 import com.yuxuanting.housemanage.dto.auth.LoginDto;
@@ -50,7 +51,7 @@ public class AdminController {
 
     @RequestMapping("/testdemo")
     public ResponseEntity<String> testdemo() {
-        return ResponseEntity.ok("我爱蛋炒饭");
+        throw new APIException("test");
     }
 
 }

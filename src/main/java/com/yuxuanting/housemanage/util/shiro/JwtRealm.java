@@ -1,6 +1,10 @@
 package com.yuxuanting.housemanage.util.shiro;
 
+import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nikolalogan.common.core.controller.exception.APIException;
+import com.nikolalogan.common.core.controller.response.Resp;
+import com.nikolalogan.common.core.controller.response.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -9,6 +13,11 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Slf4j
 public class JwtRealm extends AuthorizingRealm {
     /*
@@ -50,5 +59,4 @@ public class JwtRealm extends AuthorizingRealm {
         //这里返回的是类似账号密码的东西，但是jwtToken都是jwt字符串。还需要一个该Realm的类名
 
     }
-
 }
