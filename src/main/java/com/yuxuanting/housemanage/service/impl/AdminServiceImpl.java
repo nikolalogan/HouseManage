@@ -73,7 +73,7 @@ public class AdminServiceImpl extends IBaseServiceImpl<AdminRepository, LoginDto
             Map<String, Object> chaim = new HashMap<>();
             chaim.put("username", name);
             JwtUtil jwtUtil = new JwtUtil();
-            String jwtToken = jwtUtil.encode(name, 5 * 60 * 1000, chaim);
+            String jwtToken = jwtUtil.encode(name, 30*24*60 * 60 * 1000, chaim);
             // TODO 待集成redis
             return R.success(Map.of("jwtToken",jwtToken));
         }else {

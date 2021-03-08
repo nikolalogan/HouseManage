@@ -32,7 +32,6 @@ public class addRentUserDto extends BaseDto {
     private String phoneNo;
 
     
-    @NotNull(message = "微信号不能为空")
     private String wechatNo;
 
     

@@ -48,10 +48,4 @@ public class AdminController {
         log.info("username:{},password:{},ip:{}", username, password,ip);
         return adminService.login(username,password,ip);
     }
-
-    @RequestMapping("/testdemo")
-    public ResponseEntity<String> testdemo() {
-        throw new APIException("test");
-    }
-
 }
