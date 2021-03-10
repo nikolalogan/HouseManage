@@ -1,11 +1,16 @@
 package com.yuxuanting.housemanage.controller;
 
+import com.nikolalogan.common.core.controller.response.Resp;
+import com.nikolalogan.common.core.dto.page.PageInfo;
+import com.nikolalogan.common.core.utils.R;
 import com.yuxuanting.housemanage.dto.house.AddHouseDto;
+import com.yuxuanting.housemanage.dto.house.SelectHouseDto;
 import com.yuxuanting.housemanage.entity.House;
 import com.yuxuanting.housemanage.entity.House;
 import com.yuxuanting.housemanage.service.HouseService;
 import com.yuxuanting.housemanage.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,8 +30,9 @@ public class HouseController {
     HouseService houseService;
 
     @PostMapping("/addOrUpdateHouse")
-    Boolean addOrUpdateHouse(@RequestBody @Valid AddHouseDto house) {
-        return houseService.addOrUpdateHouse(house);
+    Resp addOrUpdateHouse(@RequestBody @Valid AddHouseDto house) {
+        houseService.addOrUpdateHouse(house);
+        return R.success("添加成功");
     }
 
     @PostMapping("/selectHouse")
@@ -35,12 +41,13 @@ public class HouseController {
     }
 
     @PostMapping("/deleteHouse")
-    boolean deleteHouse(@RequestParam("houseId") Long houseId) {
-        return houseService.deleteHouse(houseId);
+    Resp deleteHouse(@RequestParam("houseId") Long houseId) {
+        houseService.deleteHouse(houseId);
+        return R.success("删除成功");
     }
 
-    @PostMapping("/getAllHouse")
-    List<House> getAllHouse() {
-        return houseService.selectFreeHouse();
+    @GetMapping("/getAllHouse")
+    Resp getAllHouse(SelectHouseDto selectHouseDto, PageInfo pageInfo) {
+        return R.to(houseService.selectHouses(selectHouseDto,pageInfo));
     }
 }

@@ -2,7 +2,6 @@ package com.yuxuanting.housemanage.controller;
 
 import com.nikolalogan.common.core.controller.response.Resp;
 import com.nikolalogan.common.core.dto.page.PageInfo;
-import com.nikolalogan.common.core.dto.page.PageResult;
 import com.nikolalogan.common.core.utils.R;
 import com.yuxuanting.housemanage.dto.rentuser.AddRentUserDto;
 import com.yuxuanting.housemanage.dto.rentuser.SelectRentUserDto;
@@ -10,13 +9,11 @@ import com.yuxuanting.housemanage.entity.RentUser;
 import com.yuxuanting.housemanage.service.RentUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * @author: yuxuanting
@@ -29,9 +26,9 @@ public class RentUserController {
     RentUserService rentUserService;
 
     @GetMapping("/addOrUpdateRentUser")
-    Boolean addOrUpdateRentUser(@RequestBody @Valid AddRentUserDto rentUser) {
+    Resp addOrUpdateRentUser(@RequestBody @Valid AddRentUserDto rentUser) {
         rentUserService.addOrUpdateRentUser(rentUser);
-        return true;
+        return R.success("添加成功");
     }
 
     @GetMapping("/selectRentUser")
@@ -40,8 +37,9 @@ public class RentUserController {
     }
 
     @GetMapping("/deleteRentUser")
-    boolean deleteRentUser(@RequestParam("rentUserId") Long rentUserId) {
-        return rentUserService.deleteRentUser(rentUserId);
+    Resp deleteRentUser(@RequestParam("rentUserId") Long rentUserId) {
+        rentUserService.deleteRentUser(rentUserId);
+        return R.success("删除成功");
     }
 
     @GetMapping("/getAllRentUser")

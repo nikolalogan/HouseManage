@@ -39,7 +39,7 @@ public class RentUserServiceImpl extends IBaseServiceImpl<RentUserRepository, Ad
     RentUserRepository rentUserRepository;
 
     @Override
-    public boolean addOrUpdateRentUser(AddRentUserDto rentUserDto) {
+    public void addOrUpdateRentUser(AddRentUserDto rentUserDto) {
         RentUser rentUser = new RentUser();
         if (ObjectUtils.isNotEmpty(rentUserDto.getIdNo())) {
             RentUser byIdNo = rentUserRepository.findByIdNo(rentUserDto.getIdNo());
@@ -49,20 +49,17 @@ public class RentUserServiceImpl extends IBaseServiceImpl<RentUserRepository, Ad
         }
         this.dtoToEntity(rentUserDto, rentUser);
         rentUserRepository.saveOrUpdate(rentUser);
-        return true;
     }
 
     @Override
     public RentUser selectRentUser(Long rentUserId) {
-        rentUserRepository.getOne(rentUserId).getAddress();
         return rentUserRepository.getOne(rentUserId);
     }
 
     @Override
-    public boolean deleteRentUser(Long rentUserId) {
+    public void deleteRentUser(Long rentUserId) {
         RentUser rentUser = rentUserRepository.getOne(rentUserId);
         rentUserRepository.delete(rentUser);
-        return false;
     }
 
     @Override

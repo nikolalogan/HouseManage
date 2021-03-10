@@ -1,6 +1,9 @@
 package com.yuxuanting.housemanage.service;
 
+import com.nikolalogan.common.core.dto.page.PageInfo;
+import com.nikolalogan.common.core.dto.page.PageResult;
 import com.yuxuanting.housemanage.dto.house.AddHouseDto;
+import com.yuxuanting.housemanage.dto.house.SelectHouseDto;
 import com.yuxuanting.housemanage.entity.House;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +16,11 @@ import java.util.List;
  */
 
 public interface HouseService {
-    boolean addOrUpdateHouse(AddHouseDto house);
+    void addOrUpdateHouse(AddHouseDto house);
 
-    boolean deleteHouse(Long houseId);
+    void deleteHouse(Long houseId);
 
     House selectHouse(Long houseId);
 
-    List<House> selectFreeHouse();
+    PageResult selectHouses(SelectHouseDto selectHouseDto, PageInfo pageInfo);
 }

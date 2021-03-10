@@ -15,8 +15,8 @@ import java.util.List;
  * @date: 2020-09-02 14:33
  */
 public interface RentUserService extends IBaseService<AddRentUserDto,RentUser> {
-    boolean addOrUpdateRentUser(AddRentUserDto rentUser);
+    void addOrUpdateRentUser(AddRentUserDto rentUser);
     RentUser selectRentUser(Long rentUserId);
-    boolean deleteRentUser(Long rentUserId);
+    void deleteRentUser(Long rentUserId);
     PageResult getAllRentUser(SelectRentUserDto rentUserDto, PageInfo pageInfo);
 }
