@@ -1,5 +1,6 @@
 package com.yuxuanting.housemanage.controller;
 
+import com.yuxuanting.housemanage.dto.house.AddHouseDto;
 import com.yuxuanting.housemanage.entity.House;
 import com.yuxuanting.housemanage.entity.House;
 import com.yuxuanting.housemanage.service.HouseService;
@@ -24,7 +25,7 @@ public class HouseController {
     HouseService houseService;
 
     @PostMapping("/addOrUpdateHouse")
-    Boolean addOrUpdateHouse(@RequestBody @Valid House house) {
+    Boolean addOrUpdateHouse(@RequestBody @Valid AddHouseDto house) {
         return houseService.addOrUpdateHouse(house);
     }
 

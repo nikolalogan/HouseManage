@@ -14,4 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RentUserRepository extends BaseDao<RentUser,Long>, JpaSpecificationExecutor<RentUser> {
 
+    RentUser findByIdNo(String idNo);
 }

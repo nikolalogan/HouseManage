@@ -1,5 +1,6 @@
 package com.yuxuanting.housemanage.entity;
 
+import cn.hutool.core.date.DateUtil;
 import com.nikolalogan.common.core.reponsitory.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -19,7 +21,7 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
-@Table(name = "rent_user")
+@Table(name = "rent_user",uniqueConstraints = {@UniqueConstraint(columnNames="idNo")})
 public class RentUser extends BaseEntity {
 
     @Column
@@ -37,20 +39,23 @@ public class RentUser extends BaseEntity {
     private String phoneNo;
 
     @Column
-    @NotNull(message = "微信号不能为空")
     private String wechatNo;
 
+    /**
+     * 1男 0女
+     */
     @Column
     @NotNull(message = "性别不能为空")
-    private String gender;
+    private Integer gender;
 
     @Column
     @NotNull(message = "出生日期不能为空")
-    private Date brityDay;
+    private Date birthday;
 
     @Column
-    @NotNull(message = "地址不能为空")
     private String address;
 
-
+    private Integer getAge(){
+        return DateUtil.age(birthday,new Date());
+    }
 }

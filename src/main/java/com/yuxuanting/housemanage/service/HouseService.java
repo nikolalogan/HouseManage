@@ -1,5 +1,6 @@
 package com.yuxuanting.housemanage.service;
 
+import com.yuxuanting.housemanage.dto.house.AddHouseDto;
 import com.yuxuanting.housemanage.entity.House;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 public interface HouseService {
-    boolean addOrUpdateHouse(House house);
+    boolean addOrUpdateHouse(AddHouseDto house);
 
     boolean deleteHouse(Long houseId);
 

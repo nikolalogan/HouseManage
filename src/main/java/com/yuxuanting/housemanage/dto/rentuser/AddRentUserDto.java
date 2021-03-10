@@ -1,8 +1,9 @@
-package com.yuxuanting.housemanage.dto;
+package com.yuxuanting.housemanage.dto.rentuser;
 
 import com.nikolalogan.common.core.dto.BaseDto;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,9 +16,9 @@ import java.util.Date;
  */
 @Setter
 @Getter
-public class addRentUserDto extends BaseDto {
+public class AddRentUserDto extends BaseDto {
 
-    
+
     @NotNull(message = "姓名不能为空")
     private String trueName;
 
@@ -36,15 +37,13 @@ public class addRentUserDto extends BaseDto {
 
     
     @NotNull(message = "性别不能为空")
-    private String gender;
+    private Integer gender;
 
-    
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "出生日期不能为空")
-    private Date brityDay;
+    private Date birthday;
 
     
-    @NotNull(message = "地址不能为空")
     private String address;
-
-
 }

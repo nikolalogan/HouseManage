@@ -30,7 +30,7 @@ public class JwtFilter extends AccessControlFilter {
      * */
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
-        log.warn("isAccessAllowed 方法被调用");
+//        log.warn("isAccessAllowed 方法被调用");
         //这里先让它始终返回false来使用onAccessDenied()方法
         return false;
     }
@@ -40,13 +40,13 @@ public class JwtFilter extends AccessControlFilter {
      */
     @Override
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
-        log.warn("onAccessDenied 方法被调用");
+//        log.warn("onAccessDenied 方法被调用");
         //这个地方和前端约定，要求前端将jwtToken放在请求的Header部分
 
         //所以以后发起请求的时候就需要在Header中放一个Authorization，值就是对应的Token
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String jwt = request.getHeader("Authorization");
-        log.info("请求的 Header 中藏有 jwtToken {}", jwt);
+//        log.info("请求的 Header 中藏有 jwtToken {}", jwt);
         JwtToken jwtToken = new JwtToken(jwt);
         /*
          * 下面就是固定写法
@@ -76,7 +76,7 @@ public class JwtFilter extends AccessControlFilter {
 
         try {
             // 将数据包装在R里后，再转换为json字符串响应给前端
-            String result = JSONUtil.toJsonStr(new Resp(ResultCode.NO_AUTHORITY,"login error"));
+            String result = JSONUtil.toJsonStr(new Resp(ResultCode.NO_AUTHORITY, "login error"));
             httpResponse.getWriter().write(result);
         } catch (JsonProcessingException e) {
             throw new APIException("返回String类型错误");
