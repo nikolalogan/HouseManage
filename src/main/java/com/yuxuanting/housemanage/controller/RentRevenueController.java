@@ -1,8 +1,14 @@
 package com.yuxuanting.housemanage.controller;
 
+import com.nikolalogan.common.core.controller.response.Resp;
+import com.nikolalogan.common.core.dto.page.PageInfo;
+import com.nikolalogan.common.core.utils.R;
+import com.yuxuanting.housemanage.dto.revenue.RentRevenueDto;
+import com.yuxuanting.housemanage.dto.revenue.SelectRevenueDto;
 import com.yuxuanting.housemanage.entity.revenue.RentRevenue;
 import com.yuxuanting.housemanage.service.revenue.RentRevenueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,22 +28,24 @@ public class RentRevenueController {
     RentRevenueService rentRevenueService;
 
     @PostMapping("/addOrUpdateRentRevenue")
-    Boolean addOrUpdateRentRevenue(@RequestBody @Valid RentRevenue rentRevenue) {
-        return rentRevenueService.addOrUpdateRentRevenue(rentRevenue);
+    Resp addOrUpdateRentRevenue(@RequestBody @Valid RentRevenueDto rentRevenueDto) {
+         rentRevenueService.addOrUpdateRentRevenue(rentRevenueDto);
+         return R.success();
     }
 
     @PostMapping("/selectRentRevenue")
-    RentRevenue selectRentRevenue(@RequestParam("rentRevenueId") Long rentRevenueId) {
+    RentRevenueDto selectRentRevenue(@RequestParam("rentRevenueId") Long rentRevenueId) {
         return rentRevenueService.selectRentRevenue(rentRevenueId);
     }
 
     @PostMapping("/deleteRentRevenue")
-    boolean deleteRentRevenue(@RequestParam("rentRevenueId") Long rentRevenueId) {
-        return rentRevenueService.deleteRevenue(rentRevenueId);
+    Resp deleteRentRevenue(@RequestParam("rentRevenueId") Long rentRevenueId) {
+        rentRevenueService.deleteRevenue(rentRevenueId);
+        return R.success();
     }
 
-    @PostMapping("/getAllRentRevenue")
-    List<RentRevenue> getAllRentRevenue() {
-        return rentRevenueService.findAllRentRevenue();
+    @GetMapping("/getAllRentRevenue")
+    Resp getAllRentRevenue(SelectRevenueDto selectRevenueDto, @Valid PageInfo pageInfo) {
+        return R.to(rentRevenueService.findAllRentRevenue(selectRevenueDto,pageInfo));
     }
 }

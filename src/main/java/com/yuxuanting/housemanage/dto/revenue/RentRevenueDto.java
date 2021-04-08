@@ -1,14 +1,12 @@
-package com.yuxuanting.housemanage.entity.revenue;
+package com.yuxuanting.housemanage.dto.revenue;
 
-import com.nikolalogan.common.core.reponsitory.entity.BaseEntity;
+import com.nikolalogan.common.core.dto.BaseDto;
 import com.yuxuanting.housemanage.entity.Admin;
+import com.yuxuanting.housemanage.entity.Contract;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -17,32 +15,33 @@ import java.util.Date;
 /**
  * @author: yuxuanting
  * @description:
- * @date: 2020-09-08 11:31
+ * @date: 2021-03-15 10:11
  */
-@Getter
 @Setter
-@MappedSuperclass
-public class Revenue extends BaseEntity {
-    @Column
+@Getter
+public class RentRevenueDto extends BaseDto {
+
     @NotNull(message = "流水时间不能为空")
     private Date revenueDate;
 
-    @Column
+
     @NotNull(message = "流水金额不能为空")
     private BigDecimal revenueMoney;
 
-    @Column
+
     @NotNull(message = "备注")
     private String description;
 
-    @Column
+
     @NotNull(message = "记录时间不能为空")
     private Date recordDate;
 
     /**
      * 管理员
      */
-    @OneToOne(fetch = FetchType.LAZY)
+    @NotNull(message = "管理员不能为空")
     private Admin admin;
 
+    @NotNull(message = "合同号不能为空")
+    private Contract contractId;
 }

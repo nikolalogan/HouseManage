@@ -1,8 +1,9 @@
 package com.yuxuanting.housemanage.service.revenue;
 
-import com.yuxuanting.housemanage.entity.revenue.RentRevenue;
-
-import java.util.List;
+import com.nikolalogan.common.core.dto.page.PageInfo;
+import com.nikolalogan.common.core.dto.page.PageResult;
+import com.yuxuanting.housemanage.dto.revenue.RentRevenueDto;
+import com.yuxuanting.housemanage.dto.revenue.SelectRevenueDto;
 
 /**
  * @author: yuxuanting
@@ -10,8 +11,8 @@ import java.util.List;
  * @date: 2020-09-09 22:36
  */
 public interface RentRevenueService {
-    boolean addOrUpdateRentRevenue(RentRevenue RentRevenue);
-    RentRevenue selectRentRevenue(Long RentRevenueId);
-    boolean deleteRevenue(Long RentRevenueId);
-    List<RentRevenue> findAllRentRevenue();
+    void addOrUpdateRentRevenue(RentRevenueDto rentRevenueDto);
+    RentRevenueDto selectRentRevenue(Long RentRevenueId);
+    void deleteRevenue(Long RentRevenueId);
+    PageResult findAllRentRevenue(SelectRevenueDto selectRevenueDto, PageInfo pageInfo);
 }

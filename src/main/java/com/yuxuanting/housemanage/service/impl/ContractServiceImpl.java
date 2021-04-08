@@ -1,11 +1,10 @@
 package com.yuxuanting.housemanage.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.yuxuanting.housemanage.dao.ContractRepository;
+import com.yuxuanting.housemanage.dao.ContractDao;
 import com.yuxuanting.housemanage.entity.Contract;
 import com.yuxuanting.housemanage.service.ContractService;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ import java.util.List;
 @Service
 public class ContractServiceImpl implements ContractService {
     @Autowired
-    ContractRepository contractRepository;
+    ContractDao contractRepository;
 
     @Override
     public boolean addOrUpdateContract(Contract contract) {

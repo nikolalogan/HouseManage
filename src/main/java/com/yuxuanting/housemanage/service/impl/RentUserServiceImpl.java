@@ -10,7 +10,7 @@ import com.nikolalogan.common.core.dto.page.PageResult;
 import com.nikolalogan.common.core.service.impl.IBaseServiceImpl;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
-import com.yuxuanting.housemanage.dao.RentUserRepository;
+import com.yuxuanting.housemanage.dao.RentUserDao;
 import com.yuxuanting.housemanage.dto.rentuser.AddRentUserDto;
 import com.yuxuanting.housemanage.dto.rentuser.SelectRentUserDto;
 import com.yuxuanting.housemanage.entity.QRentUser;
@@ -24,7 +24,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.Date;
 
 /**
@@ -34,9 +33,9 @@ import java.util.Date;
  */
 @Service
 @Slf4j
-public class RentUserServiceImpl extends IBaseServiceImpl<RentUserRepository, AddRentUserDto, RentUser> implements RentUserService {
+public class RentUserServiceImpl extends IBaseServiceImpl<RentUserDao, AddRentUserDto, RentUser> implements RentUserService {
     @Autowired
-    RentUserRepository rentUserRepository;
+    RentUserDao rentUserRepository;
 
     @Override
     public void addOrUpdateRentUser(AddRentUserDto rentUserDto) {

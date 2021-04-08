@@ -12,7 +12,7 @@ import java.util.List;
  * @description:
  * @date: 2020-09-08 18:10
  */
-public interface AdminRepository extends BaseDao<Admin,String>, JpaSpecificationExecutor<Admin> {
+public interface AdminDao extends BaseDao<Admin,String>, JpaSpecificationExecutor<Admin> {
 
     /**
      * 通过用户名查找管理员

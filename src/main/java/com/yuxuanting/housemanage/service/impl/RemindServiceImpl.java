@@ -1,6 +1,6 @@
 package com.yuxuanting.housemanage.service.impl;
 
-import com.yuxuanting.housemanage.dao.RemindRepository;
+import com.yuxuanting.housemanage.dao.RemindDao;
 import com.yuxuanting.housemanage.entity.Remind;
 import com.yuxuanting.housemanage.service.RemindService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class RemindServiceImpl implements RemindService {
     @Autowired
-    RemindRepository remindRepository;
+    RemindDao remindRepository;
 
     @Override
     public List<Remind> getRemind() {

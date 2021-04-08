@@ -11,5 +11,5 @@ import java.util.List;
  * @description:
  * @date: 2020-09-08 18:13
  */
-public interface HouseRepository extends BaseDao<House,Long>, JpaSpecificationExecutor<House> {
+public interface HouseDao extends BaseDao<House,Long>, JpaSpecificationExecutor<House> {
  }

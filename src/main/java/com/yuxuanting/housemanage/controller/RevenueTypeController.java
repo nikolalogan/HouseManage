@@ -1,5 +1,8 @@
 package com.yuxuanting.housemanage.controller;
 
+import com.nikolalogan.common.core.controller.response.Resp;
+import com.nikolalogan.common.core.utils.R;
+import com.yuxuanting.housemanage.dto.revenue.RevenueTypeDto;
 import com.yuxuanting.housemanage.entity.revenue.RevenueType;
 import com.yuxuanting.housemanage.service.revenue.RevenueTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +25,8 @@ public class RevenueTypeController {
     RevenueTypeService revenueTypeService;
 
     @PostMapping("/addOrUpdateRevenueType")
-    Boolean addOrUpdateRevenueType(@RequestBody @Valid RevenueType revenueType) {
-        return revenueTypeService.addOrUpdateRevenueType(revenueType);
+    Boolean addOrUpdateRevenueType(@RequestBody @Valid RevenueTypeDto revenueTypeDto) {
+        return revenueTypeService.addOrUpdateRevenueType(revenueTypeDto);
     }
 
     @PostMapping("/selectRevenueType")
@@ -37,7 +40,7 @@ public class RevenueTypeController {
     }
 
     @PostMapping("/getAllRevenueType")
-    List<RevenueType> getAllRevenueType() {
-        return revenueTypeService.findAllRevenueType();
+    Resp getAllRevenueType() {
+        return R.to(revenueTypeService.findAllRevenueType());
     }
 }

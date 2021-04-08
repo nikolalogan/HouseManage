@@ -1,5 +1,6 @@
 package com.yuxuanting.housemanage.service.revenue;
 
+import com.yuxuanting.housemanage.dto.revenue.RevenueTypeDto;
 import com.yuxuanting.housemanage.entity.revenue.RevenueType;
 
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.List;
  * @date: 2020-09-09 23:54
  */
 public interface RevenueTypeService {
-    boolean addOrUpdateRevenueType(RevenueType RevenueType);
+    boolean addOrUpdateRevenueType(RevenueTypeDto revenueTypeDto);
     RevenueType selectRevenueType(Long RevenueTypeId);
     boolean deleteRevenueType(Long RevenueTypeId);
-    List<RevenueType> findAllRevenueType();
+    List<RevenueTypeDto> findAllRevenueType();
 }

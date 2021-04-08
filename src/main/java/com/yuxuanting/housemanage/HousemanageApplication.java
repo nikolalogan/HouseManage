@@ -14,13 +14,12 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 @SpringBootApplication
 @EnableJpaRepositories(repositoryBaseClass = com.nikolalogan.common.core.reponsitory.dao.impl.BaseDaoImpl.class)
 @ComponentScans(value = {
-		@ComponentScan(value = "com.nikolalogan.common.core.controller",includeFilters = {
-				@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE,classes = {ExceptionControllerAdvice.class, ResponseControllerAdvice.class})
-		})
-}
-)
+        @ComponentScan(value = "com.nikolalogan.common.core.controller", includeFilters = {
+                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {ExceptionControllerAdvice.class, ResponseControllerAdvice.class})
+        })
+})
 public class HousemanageApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(HousemanageApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(HousemanageApplication.class, args);
+    }
 }

@@ -5,7 +5,7 @@ import com.nikolalogan.common.core.dto.page.PageInfo;
 import com.nikolalogan.common.core.dto.page.PageResult;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Predicate;
-import com.yuxuanting.housemanage.dao.HouseRepository;
+import com.yuxuanting.housemanage.dao.HouseDao;
 import com.yuxuanting.housemanage.dto.house.AddHouseDto;
 import com.yuxuanting.housemanage.dto.house.SelectHouseDto;
 import com.yuxuanting.housemanage.entity.House;
@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HouseServiceImpl implements HouseService {
     @Autowired
-    HouseRepository houseRepository;
+    HouseDao houseRepository;
 
     @Override
     public void addOrUpdateHouse(AddHouseDto houseDto) {
@@ -102,4 +102,6 @@ public class HouseServiceImpl implements HouseService {
         pageResult.setTotal(bizLogs.getTotalElements());
         return pageResult;
     }
+
+
 }

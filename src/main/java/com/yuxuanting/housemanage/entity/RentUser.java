@@ -2,11 +2,13 @@ package com.yuxuanting.housemanage.entity;
 
 import cn.hutool.core.date.DateUtil;
 import com.nikolalogan.common.core.reponsitory.entity.BaseEntity;
+import com.yuxuanting.housemanage.entity.common.File;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -54,6 +56,12 @@ public class RentUser extends BaseEntity {
 
     @Column
     private String address;
+
+    @OneToOne
+    private File idFront;
+
+    @OneToOne
+    private File idBack;
 
     private Integer getAge(){
         return DateUtil.age(birthday,new Date());

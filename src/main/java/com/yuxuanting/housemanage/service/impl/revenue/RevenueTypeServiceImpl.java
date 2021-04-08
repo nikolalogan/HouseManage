@@ -3,6 +3,7 @@ package com.yuxuanting.housemanage.service.impl.revenue;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.log.Log;
 import com.yuxuanting.housemanage.dao.revenue.RevenueTypeRepository;
+import com.yuxuanting.housemanage.dto.revenue.RevenueTypeDto;
 import com.yuxuanting.housemanage.entity.revenue.RevenueType;
 import com.yuxuanting.housemanage.service.revenue.RevenueTypeService;
 import org.apache.commons.lang3.ObjectUtils;
@@ -10,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,14 +26,32 @@ public class RevenueTypeServiceImpl implements RevenueTypeService {
 
 
     @Override
-    public boolean addOrUpdateRevenueType(RevenueType revenueType) {
-        RevenueType revenueTypeEn =  new RevenueType();
-        if (ObjectUtils.isNotEmpty(revenueType.getId())){
-            revenueTypeEn = revenueTypeRepository.getOne(revenueType.getId());
+    public boolean addOrUpdateRevenueType(RevenueTypeDto revenueTypeDto) {
+        RevenueType revenueType =  new RevenueType();
+        if (ObjectUtils.isNotEmpty(revenueTypeDto.getId())){
+            revenueType = revenueTypeRepository.getOne(Long.valueOf(revenueTypeDto.getId()));
         }
-        BeanUtil.copyProperties(revenueType, revenueTypeEn);
-        revenueTypeRepository.saveOrUpdate(revenueTypeEn);
+
+        this.dtoToEntity(revenueTypeDto, revenueType);
+        revenueTypeRepository.saveOrUpdate(revenueType);
         return true;
+    }
+
+    private void dtoToEntity(RevenueTypeDto revenueTypeDto, RevenueType revenueType) {
+        if (ObjectUtils.isNotEmpty(revenueTypeDto.getRevenueType())){
+            revenueType.setRevenueType(revenueTypeDto.getRevenueType());
+        }
+        if (ObjectUtils.isNotEmpty(revenueTypeDto.getRevenueName())){
+            revenueType.setRevenueName(revenueTypeDto.getRevenueName());
+        }
+    }
+    private void entityToDto(RevenueTypeDto revenueTypeDto, RevenueType revenueType) {
+        if (ObjectUtils.isNotEmpty(revenueType.getRevenueType())){
+            revenueTypeDto.setRevenueType(revenueType.getRevenueType());
+        }
+        if (ObjectUtils.isNotEmpty(revenueType.getRevenueName())){
+            revenueTypeDto.setRevenueName(revenueType.getRevenueName());
+        }
     }
 
     @Override
@@ -47,7 +67,15 @@ public class RevenueTypeServiceImpl implements RevenueTypeService {
     }
 
     @Override
-    public List<RevenueType> findAllRevenueType() {
-        return revenueTypeRepository.findAll();
+    public List<RevenueTypeDto> findAllRevenueType() {
+
+        List<RevenueType> list = revenueTypeRepository.findAll();
+        List<RevenueTypeDto> dtoList =new ArrayList<RevenueTypeDto>();
+        list.forEach((type)->{
+            RevenueTypeDto dto = new RevenueTypeDto();
+            this.entityToDto(dto,type);
+            dtoList.add(dto);
+        });
+        return dtoList;
     }
 }

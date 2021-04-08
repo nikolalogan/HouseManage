@@ -3,11 +3,10 @@ package com.yuxuanting.housemanage.service.impl;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.SecureUtil;
-import com.nikolalogan.common.core.controller.exception.APIException;
 import com.nikolalogan.common.core.controller.response.Resp;
 import com.nikolalogan.common.core.service.impl.IBaseServiceImpl;
 import com.nikolalogan.common.core.utils.R;
-import com.yuxuanting.housemanage.dao.AdminRepository;
+import com.yuxuanting.housemanage.dao.AdminDao;
 import com.yuxuanting.housemanage.dto.auth.LoginDto;
 import com.yuxuanting.housemanage.entity.Admin;
 import com.yuxuanting.housemanage.service.AdminService;
@@ -23,7 +22,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +35,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-public class AdminServiceImpl extends IBaseServiceImpl<AdminRepository, LoginDto,Admin> implements AdminService{
+public class AdminServiceImpl extends IBaseServiceImpl<AdminDao, LoginDto,Admin> implements AdminService{
 
     //
     @Value("${redis.identifyingTokenExpireTime}")
@@ -48,7 +46,7 @@ public class AdminServiceImpl extends IBaseServiceImpl<AdminRepository, LoginDto
 
 
     @Autowired
-    AdminRepository adminRepository;
+    AdminDao adminRepository;
 
     @Autowired
     RedisTemplate redisTemplate;
